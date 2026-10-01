@@ -1,0 +1,83 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if category %}{{ category.name }} - LuxeBags Boutique{% else %}LuxeBags Boutique{% endif %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-dark mb-4 shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="{% url 'shop:product_list' %}">LuxeBags Boutique</a>
+        <a href="{% url 'cart:cart_detail' %}" class="btn btn-outline-light btn-sm">
+            Shopping Bag
+        </a>
+    </div>
+</nav>
+
+<div class="container py-4">
+    <div class="row">
+        <!-- Collections Sidebar -->
+        <div class="col-md-3 mb-4">
+            <h5 class="fw-bold mb-3">Collections</h5>
+            <div class="list-group shadow-sm">
+                <a href="{% url 'shop:product_list' %}" 
+                   class="list-group-item list-group-item-action {% if not category %}active bg-dark border-dark{% endif %}">
+                    All Handbags
+                </a>
+                {% for c in categories %}
+                    <a href="{{ c.get_absolute_url }}" 
+                       class="list-group-item list-group-item-action {% if category.slug == c.slug %}active bg-dark border-dark{% endif %}">
+                        {{ c.name }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Handbags Grid -->
+        <div class="col-md-9">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-bold mb-0">{% if category %}{{ category.name }}{% else %}All Handbags{% endif %}</h4>
+                <span class="text-muted small">{{ products|length }} items available</span>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for product in products %}
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" 
+                                     class="card-img-top" 
+                                     alt="{{ product.name }}" 
+                                     style="height: 240px; object-fit: cover;">
+                            {% else %}
+                                <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center text-muted" 
+                                     style="height: 240px;">
+                                    <span>No Image Available</span>
+                                </div>
+                            {% endif %}
+                            <div class="card-body d-flex flex-column">
+                                <h6 class="card-title fw-semibold">{{ product.name }}</h6>
+                                <p class="card-text text-dark fw-bold mb-3">₹{{ product.price }}</p>
+                                <a href="{{ product.get_absolute_url }}" class="btn btn-outline-dark mt-auto w-100">
+                                    View Bag
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="col-12">
+                        <div class="alert alert-info py-4 text-center">
+                            No handbags available in this category yet.
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
