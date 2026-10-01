@@ -1,10 +1,9 @@
-from django.urls import path
-import views
-
-app_name = 'cart'
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path('', views.cart_detail, name='cart_detail'),
-    path('add/<int:product_id>/', views.cart_add, name='cart_add'),
-    path('remove/<int:product_id>/', views.cart_remove, name='cart_remove'),
+    path('admin/', admin.site.urls),
+    path('cart/', include('cart.urls', namespace='cart')),
+    path('orders/', include('orders.urls', namespace='orders')),
+    path('', include('shop.urls', namespace='shop')),
 ]
