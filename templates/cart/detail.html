@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Shopping Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="{% url 'shop:product_list' %}">LuxeBags boutique</a>
+        <a href="{% url 'shop:product_list' %}" class="btn btn-outline-light btn-sm">Continue Shopping</a>
+    </div>
+</nav>
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold">Shopping Cart</h5>
+                </div>
+                <div class="card-body p-0">
+                    {% if cart %}
+                    <div class="table-responsive">
+                        <table class="table align-middle table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col" class="ps-4">Product</th>
+                                    <th scope="col" class="text-center">Quantity</th>
+                                    <th scope="col" class="text-end">Unit Price</th>
+                                    <th scope="col" class="text-end">Subtotal</th>
+                                    <th scope="col" class="text-center pe-4">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in cart %}
+                                <tr>
+                                    <td class="ps-4">
+                                        <h6 class="mb-0 fw-semibold">{{ item.product.name }}</h6>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge bg-secondary fs-6">{{ item.quantity }}</span>
+                                    </td>
+                                    <td class="text-end">${{ item.price }}</td>
+                                    <td class="text-end fw-semibold">${{ item.total_price }}</td>
+                                    <td class="text-center pe-4">
+                                        <form action="{% url 'cart:cart_remove' item.product.id %}" method="post" class="d-inline">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                Remove
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-5">
+                        <h5 class="text-muted">Your cart is empty</h5>
+                        <p class="text-secondary small">Looks like you haven't added anything yet.</p>
+                        <a href="{% url 'shop:product_list' %}" class="btn btn-primary mt-2">Explore Products</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <a href="{% url 'shop:product_list' %}" class="btn btn-outline-secondary">
+                &larr; Back to Products
+            </a>
+        </div>
+
+        {% if cart %}
+        <!-- Order Summary Card -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold">Order Summary</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">Items Subtotal:</span>
+                        <span>${{ cart.get_total_price }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-muted">Estimated Shipping:</span>
+                        <span class="text-success">Free</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="fw-bold fs-5">Total:</span>
+                        <span class="fw-bold fs-5 text-primary">${{ cart.get_total_price }}</span>
+                    </div>
+                    <a href="{% url 'orders:order_create' %}" class="btn btn-primary btn-lg w-100 fw-semibold">
+                      Proceed to Checkout
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>
