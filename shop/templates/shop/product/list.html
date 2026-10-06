@@ -20,6 +20,15 @@
     <circle cx="32" cy="33" r="2.2" fill="#d4af37"/>
   </svg>
   <span>LuxeBags Boutique</span>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <li class="nav-item">
+        <a class="nav-link text-white" href="{% url 'shop:product_list' %}">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-white" href="{% url 'shop:contact_us' %}">Contact Us</a>
+    </li>
+</ul>
+
 
         <a href="{% url 'cart:cart_detail' %}" class="btn btn-outline-light btn-sm">
             Shopping Bag
