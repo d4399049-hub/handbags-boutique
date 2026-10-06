@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - LuxeBags Boutique</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="{% url 'shop:product_list' %}">
+            LuxeBags Boutique
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-3">
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'shop:product_list' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white active" href="{% url 'shop:about' %}">About Us</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'shop:faq' %}">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'shop:contact_us' %}">Contact Us</a></li>
+                <li class="nav-item"><a class="btn btn-outline-light btn-sm px-3" href="{% url 'cart:cart_detail' %}">Shopping Bag</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h1 class="fw-bold mb-4">Our Story & Craftsmanship</h1>
+            <p class="lead text-muted">Curated elegance designed for everyday luxury.</p>
+            <hr class="my-4">
+            <p>At LuxeBags Boutique, we curate statement pieces ranging from everyday totes to elegant evening crossbody clutches. Every piece in our collection is chosen for durability, premium materials, and timeless aesthetic.</p>
+            <div class="row g-4 mt-3">
+                <div class="col-md-6">
+                    <div class="p-3 bg-white shadow-sm rounded border-0">
+                        <h5 class="fw-bold">Premium Materials</h5>
+                        <p class="text-muted small mb-0">Engineered with high-grade synthetic and genuine leathers tailored for longevity.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 bg-white shadow-sm rounded border-0">
+                        <h5 class="fw-bold">Modern Aesthetic</h5>
+                        <p class="text-muted small mb-0">Minimalist silhouettes with functional multi-compartment interior storage.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
