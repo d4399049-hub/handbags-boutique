@@ -21,5 +21,11 @@ def product_detail(request, id, slug):
 def contact_us(request):
     return render(request, 'shop/contact.html')
 
+def about(request):
+    return render(request, 'shop/about.html')
+
+def faq(request):
+    return render(request, 'shop/faq.html')
+
 
 # Create your views here.
