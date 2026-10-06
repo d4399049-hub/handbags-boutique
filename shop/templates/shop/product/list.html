@@ -9,33 +9,51 @@
 </head>
 <body class="bg-light">
 
-<nav class="navbar navbar-dark bg-dark mb-4 shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-white text-decoration-none" href="/">
-  <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="32" cy="32" r="30" fill="#1e1e24" stroke="#d4af37" stroke-width="2"/>
-    <path d="M24 24C24 19.58 27.58 16 32 16C36.42 16 40 19.58 40 24" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M18 25L21 44C21.3 45.7 22.8 47 24.5 47H39.5C41.2 47 42.7 45.7 43 44L46 25C46.2 23.9 45.4 23 44.3 23H19.7C18.6 23 17.8 23.9 18 25Z" fill="#2a2a32" stroke="#d4af37" stroke-width="2"/>
-    <path d="M19 23L32 33L45 23" stroke="#d4af37" stroke-width="1.8" fill="none"/>
-    <circle cx="32" cy="33" r="2.2" fill="#d4af37"/>
-  </svg>
-  <span>LuxeBags Boutique</span>
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-    <li class="nav-item">
-        <a class="nav-link text-white" href="{% url 'shop:product_list' %}">Home</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-white" href="{% url 'shop:contact_us' %}">Contact Us</a>
-    </li>
-</ul>
-
-
-        <a href="{% url 'cart:cart_detail' %}" class="btn btn-outline-light btn-sm">
-            Shopping Bag
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="{% url 'shop:product_list' %}">
+            LuxeBags Boutique
         </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-3">
+                <li class="nav-item">
+                    <a class="nav-link text-white active" href="{% url 'shop:product_list' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'shop:contact_us' %}">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-light btn-sm px-3" href="{% url 'cart:cart_detail' %}">Shopping Bag</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav><nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="{% url 'shop:product_list' %}">
+            LuxeBags Boutique
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-3">
+                <li class="nav-item">
+                    <a class="nav-link text-white active" href="{% url 'shop:product_list' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'shop:contact_us' %}">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-light btn-sm px-3" href="{% url 'cart:cart_detail' %}">Shopping Bag</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
-
 <div class="container py-4">
     <div class="row">
         <!-- Collections Sidebar -->
