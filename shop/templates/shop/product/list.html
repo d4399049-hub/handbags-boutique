@@ -1,3 +1,4 @@
+{% load static %}
 <<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,10 @@
 
 <nav class="navbar navbar-dark bg-dark mb-4 shadow-sm">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="{% url 'shop:product_list' %}">LuxeBags Boutique</a>
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="/">
+    <img src="{% static 'img/logo.webp' %}" alt="LuxeBags Logo" width="35" height="35" class="d-inline-block align-text-top rounded-circle">
+    <span>LuxeBags Boutique</span>
+</a>
         <a href="{% url 'cart:cart_detail' %}" class="btn btn-outline-light btn-sm">
             Shopping Bag
         </a>
