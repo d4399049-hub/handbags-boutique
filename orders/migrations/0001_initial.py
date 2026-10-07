@@ -7,7 +7,8 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-    ]
+    ('shop', '0001_initial'),
+]
 
     operations = [
         migrations.CreateModel(
@@ -32,7 +33,7 @@ class Migration(migrations.Migration):
                 ('available', models.BooleanField(default=True)),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='products', to='shop.category')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='products',to='shop.Product')),
             ],
         ),
     ]
