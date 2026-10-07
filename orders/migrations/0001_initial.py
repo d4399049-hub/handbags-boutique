@@ -7,40 +7,54 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('shop', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Order',
+            name='Category',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=50)),
-                ('last_name', models.CharField(max_length=50)),
-                ('email', models.EmailField(max_length=254)),
-                ('address', models.CharField(max_length=250)),
-                ('postal_code', models.CharField(max_length=20)),
-                ('city', models.CharField(max_length=100)),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('updated', models.DateTimeField(auto_now=True)),
-                ('paid', models.BooleanField(default=False)),
+                ('name', models.CharField(max_length=200)),
+                ('slug', models.SlugField(max_length=200, unique=True)),
             ],
             options={
-                'ordering': ['-created'],
+                'verbose_name': 'category',
+                'verbose_name_plural': 'categories',
+                'ordering': ['name'],
             },
         ),
         migrations.CreateModel(
-            name='OrderItem',
+            name='Product',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('name', models.CharField(max_length=200)),
+                ('slug', models.SlugField(max_length=200)),
+                ('image', models.ImageField(blank=True, upload_to='products/%Y/%m/%d')),
+                ('description', models.TextField(blank=True)),
                 ('price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('quantity', models.PositiveIntegerField(default=1)),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='items', to='orders.order')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='order_items', to='shop.product')),
+                ('available', models.BooleanField(default=True)),
+                ('created', models.DateTimeField(auto_now_add=True)),
+                ('updated', models.DateTimeField(auto_now=True)),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='products', to='shop.category')),
             ],
+            options={
+                'ordering': ['name'],
+            },
         ),
         migrations.AddIndex(
-            model_name='order',
-            index=models.Index(fields=['-created'], name='orders_orde_created_0e92de_idx'),
+            model_name='category',
+            index=models.Index(fields=['name'], name='shop_catego_name_289c7e_idx'),
+        ),
+        migrations.AddIndex(
+            model_name='product',
+            index=models.Index(fields=['id', 'slug'], name='shop_produc_id_f21274_idx'),
+        ),
+        migrations.AddIndex(
+            model_name='product',
+            index=models.Index(fields=['name'], name='shop_produc_name_a2070e_idx'),
+        ),
+        migrations.AddIndex(
+            model_name='product',
+            index=models.Index(fields=['-created'], name='shop_produc_created_ef211c_idx'),
         ),
     ]
